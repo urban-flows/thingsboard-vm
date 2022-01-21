@@ -10,9 +10,9 @@ release=$(lsb_release -cs)
 set -e
 
 # Step 0 - Upgrade OS packages
-apt update
-apt upgrade --yes
-apt install --yes wget
+apt-get -q update
+apt-get -q upgrade --yes
+apt-get -q install --yes wget
 
 # Step 1. Install Java 11 (OpenJDK)
 apt install --yes openjdk-11-jdk
@@ -30,13 +30,10 @@ cat /etc/thingsboard/conf/thingsboard.conf.bak ./thingsboard_license.conf > /etc
 # Install PostgreSQL
 # import the repository signing key:
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-
 # add repository contents to your system:
-
 echo "deb http://apt.postgresql.org/pub/repos/apt/ ${release}"-pgdg main | sudo tee /etc/apt/sources.list.d/pgdg.list
-
 # install and launch the postgresql service:
-apt install postgresql-12
+apt-get -q install --yes postgresql-12
 service postgresql start
 # sudo -u postgres psql -c "\password"
 #createuser -h localhost --username postgres --pwprompt thingsboard
