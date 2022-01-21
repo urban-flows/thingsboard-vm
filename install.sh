@@ -3,7 +3,7 @@
 # ThingsBoard PE installation script
 # https://thingsboard.io/docs/user-guide/install/pe/ubuntu
 
-thingsboard_version="3.3.2pe"
+thingsboard_version="3.3.1pe"
 release=$(lsb_release -cs)
 
 # Exit immediately if a command exits with a non-zero status.
@@ -18,8 +18,8 @@ apt-get -qq install --yes wget
 apt install --yes openjdk-11-jdk
 
 # Step 2. ThingsBoard service installation
-wget --quiet "https://dist.thingsboard.io/thingsboard-$thingsboard_version.deb" --output-document=thingsboard.deb
-dpkg -i thingsboard.deb
+wget --quiet "https://dist.thingsboard.io/thingsboard-$thingsboard_version.deb" --output-document=/tmp/thingsboard.deb
+dpkg -i /tmp/thingsboard.deb
 # Backup original configuration file
 cp --preserve=mode,ownership --verbose --no-clobber /etc/thingsboard/conf/thingsboard.conf /etc/thingsboard/conf/thingsboard.conf.bak
 
@@ -39,9 +39,9 @@ apt-get -qq install --yes postgresql-12
 service postgresql start
 #sudo -u postgres psql -c "\password"
 #createuser -h localhost --username postgres --pwprompt thingsboard
+#createdb -h localhost --username postgres --owner thingsboard thingsboard
 
 # Append custom configuration
-cat ./thingsboard_extra.conf >> /etc/thingsboard/conf/thingsboard.conf
 echo "You must manually configure the database login"
 echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
@@ -60,8 +60,11 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 #echo "You must manually configure the database login"
 #echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
+# Show configuration differences
+diff ./thingsboard.conf /etc/thingsboard/conf/thingsboard.conf
+
 # Step 7. Run installation script
-/usr/share/thingsboard/bin/install/install.sh
+#/usr/share/thingsboard/bin/install/install.sh
 
 # Step 8. Start ThingsBoard service
-service thingsboard start
+#service thingsboard start

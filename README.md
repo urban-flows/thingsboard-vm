@@ -12,6 +12,8 @@ This script installs the ThingsBoard service and a PostgreSQL database as per Th
    1. PostgreSQL superuser `sudo -u postgres psql -c "\password"`
    2. PostgreSQL service user `createuser -h localhost --username postgres --pwprompt thingsboard`
 5. Configure the license key and secrets
+6. `cd`
+7. `sudo /usr/share/thingsboard/bin/install/install.sh`
 
 ## Verify
 
@@ -19,5 +21,17 @@ Check we have OpenJDK version 11
 
 ```bash
 java -version
+```
+
+Check the service is running:
+
+```bash
+sudo systemctl status thingsboard.service
+```
+
+View logs:
+
+```bash
+sudo journalctl -u thingsboard.service --since "24 hours ago"
 ```
 
