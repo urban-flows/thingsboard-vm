@@ -33,11 +33,11 @@ echo "Set TB_LICENSE_SECRET in /etc/thingsboard/conf/thingsboard.conf"
 # import the repository signing key:
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 # add repository contents to your system:
-echo "deb http://apt.postgresql.org/pub/repos/apt/ ${release}"-pgdg main | sudo tee /etc/apt/sources.list.d/pgdg.list
+echo "deb http://apt.postgresql.org/pub/repos/apt/ ${release}"-pgdg main > /etc/apt/sources.list.d/pgdg.list
 # install and launch the postgresql service:
-apt-get -q qinstall --yes postgresql-12
+apt-get -qq install --yes postgresql-12
 service postgresql start
-# sudo -u postgres psql -c "\password"
+#sudo -u postgres psql -c "\password"
 #createuser -h localhost --username postgres --pwprompt thingsboard
 
 # Append custom configuration
@@ -51,12 +51,12 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 #systemctl enable rabbitmq-server.service
 #systemctl start rabbitmq-server.service
 # Create admin user
-#sudo rabbitmqctl add_user $USER password
-#sudo rabbitmqctl set_user_tags $USER administrator
-#sudo rabbitmqctl set_permissions -p / $USER ".*" ".*" ".*"
+#rabbitmqctl add_user $USER password
+#rabbitmqctl set_user_tags $USER administrator
+#rabbitmqctl set_permissions -p / $USER ".*" ".*" ".*"
 # Create service user
-#sudo rabbitmqctl add_user thingsboard password
-#sudo rabbitmqctl set_permissions -p / thingsboard ".*" ".*" ".*"
+#rabbitmqctl add_user thingsboard password
+#rabbitmqctl set_permissions -p / thingsboard ".*" ".*" ".*"
 #echo "You must manually configure the database login"
 #echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
