@@ -61,7 +61,7 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 #echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
 # Step 7. Run installation script
-./usr/share/thingsboard/bin/install/install.sh
+/usr/share/thingsboard/bin/install/install.sh
 
 # Step 8. Start ThingsBoard service
 service thingsboard start
