@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 
 .idea
+thingsboard_license.conf

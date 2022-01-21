@@ -8,7 +8,8 @@ ThingsBoard PE [Ubuntu installation instructions](https://thingsboard.io/docs/us
 # Installation
 
 1. Clone this repository
-2. Run the script as an administrator: `sudo sh install.sh`
+2. Create a secret license file `thingsboard_license.conf` which contains `export TB_LICENSE_SECRET=YOUR_LICENSE_SECRET_HERE`
+3. Run the script as an administrator: `sudo sh install.sh`
 
 ## Verify
 
