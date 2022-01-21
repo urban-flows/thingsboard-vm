@@ -7,8 +7,8 @@ This script installs the ThingsBoard service and a PostgreSQL database as per Th
 
 1. Clone this repository
 2. Go into that directory: `cd ./thingsboard-vm`
-3. Create a secret license file: `echo "export TB_LICENSE_SECRET=YOUR_LICENSE_SECRET_HERE" > thingsboard_license.conf` and insert the license key in that file.
-4. Run the script as an administrator: `sudo sh install.sh`
+3. Run the script as an administrator: `sudo sh install.sh`
+4. Configure the license key and secrets
 
 ## Verify
 
