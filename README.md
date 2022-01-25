@@ -8,6 +8,7 @@ This script installs the ThingsBoard service and a PostgreSQL database as per Th
 1. Clone this repository
 2. Go into that directory: `cd ./thingsboard-vm`
 3. Run the script as an administrator: `sudo sh install.sh`
+3. Check for any configuration changes: `diff ./thingsboard.conf /etc/thingsboard/conf/thingsboard.conf`
 4. Create service users for each subsystem
    1. PostgreSQL superuser `sudo -u postgres psql -c "\password"`
    2. PostgreSQL service user `createuser -h localhost --username postgres --pwprompt thingsboard`
