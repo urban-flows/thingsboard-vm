@@ -68,3 +68,10 @@ diff ./thingsboard.conf /etc/thingsboard/conf/thingsboard.conf
 
 # Step 8. Start ThingsBoard service
 #service thingsboard start
+
+# Install HAProxy
+# https://www.haproxy.com/blog/how-to-install-haproxy-on-ubuntu/
+# We'll use the PPA to get the latest LTS version
+apt-get -qq install --yes --no-install-recommends software-properties-common
+add-apt-repository ppa:vbernat/haproxy-2.4
+apt-get -qq install --yes haproxy=2.4.\*

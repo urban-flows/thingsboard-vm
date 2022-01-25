@@ -29,6 +29,14 @@ Check the service is running:
 sudo systemctl status thingsboard.service
 ```
 
+Check HAProxy is installed
+
+```bash
+haproxy -v
+```
+
+# Monitoring
+
 View logs:
 
 ```bash
