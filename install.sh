@@ -74,5 +74,10 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 # We'll use the PPA to get the latest LTS version
 echo "Installing HAProxy..."
 apt-get -qq install --yes --no-install-recommends software-properties-common
-add-apt-repository ppa:vbernat/haproxy-2.4
+add-apt-repository --yes ppa:vbernat/haproxy-2.4
 apt-get -qq install --yes haproxy=2.4.\*
+
+# Backup original config file
+cp --preserve=mode,ownership --verbose --no-clobber /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+# Install our proxy configuration file
+cp -v ./haproxy.cfg /etc/haproxy/haproxy.cfg

@@ -12,9 +12,10 @@ This script installs the ThingsBoard service and a PostgreSQL database as per Th
 4. Create service users for each subsystem
    1. PostgreSQL superuser `sudo -u postgres psql -c "\password"`
    2. PostgreSQL service user `createuser -h localhost --username postgres --pwprompt thingsboard`
-5. Configure the license key and secrets
-6. `cd`
-7. `sudo /usr/share/thingsboard/bin/install/install.sh`
+5. Configure the license key and secrets: `sudo vi /etc/thingsboard/thingsboard.conf`
+6. Go to your home directory `cd ~`
+7. Run the ThingsBoard installation script: `sudo /usr/share/thingsboard/bin/install/install.sh`
+7. Start the services
 
 ## Verify
 
