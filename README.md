@@ -1,9 +1,11 @@
 # ThingsBoard PE
-An installation script for [ThingsBoard](https://thingsboard.io/) PE to run on an Ubuntu virtual machine. See the notes on [ITS Wiki ufiot2](https://itswiki.shef.ac.uk/wiki/Ufiot2)
+An installation script and configuration for [ThingsBoard](https://thingsboard.io/) PE to run on an Ubuntu virtual machine.
 
-This script installs the ThingsBoard service and a PostgreSQL database as per ThingsBoard PE [Ubuntu installation instructions](https://thingsboard.io/docs/user-guide/install/pe/ubuntu/).
+**See the notes on [ITS Wiki ufiot2](https://itswiki.shef.ac.uk/wiki/Ufiot2)**
 
 # Installation
+
+This process and shell script installs the ThingsBoard service and a PostgreSQL database as per ThingsBoard PE [Ubuntu installation instructions](https://thingsboard.io/docs/user-guide/install/pe/ubuntu/).
 
 1. Clone this repository
 2. Go into that directory: `cd ./thingsboard-vm`
@@ -18,6 +20,8 @@ This script installs the ThingsBoard service and a PostgreSQL database as per Th
 7. Start the services
 
 ## Verify
+
+Run the commands below to check everything's set up properly. Also see the notes on [ITS Wiki ufiot2](https://itswiki.shef.ac.uk/wiki/Ufiot2).
 
 Check we have OpenJDK version 11
 
