@@ -51,12 +51,10 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 # Step 5. Choose ThingsBoard queue service
 # Install RabbitMQ
 apt-get -qq install --yes erlang rabbitmq-server
-# Create admin user
-#rabbitmqctl add_user $USER password
-#rabbitmqctl set_user_tags $USER administrator
-#rabbitmqctl set_permissions -p / $USER ".*" ".*" ".*"
+# Delete guest user
+# rabbitmqctl delete_user guest
 # Create service user
-#rabbitmqctl add_user thingsboard password
+#rabbitmqctl add_user thingsboard <password>
 #rabbitmqctl set_permissions -p / thingsboard ".*" ".*" ".*"
 echo "You must manually configure the database login"
 echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
