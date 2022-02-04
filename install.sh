@@ -15,9 +15,11 @@ apt-get -qq upgrade --yes
 apt-get -qq install --yes wget
 
 # Step 1. Install Java 11 (OpenJDK)
+echo "Installing Java..."
 apt install --yes openjdk-11-jdk
 
 # Step 2. ThingsBoard service installation
+echo "Installing ThingsBoard $thingsboard_version..."
 wget --quiet "https://dist.thingsboard.io/thingsboard-$thingsboard_version.deb" --output-document=/tmp/thingsboard.deb
 dpkg -i /tmp/thingsboard.deb
 # Backup original configuration file
@@ -31,6 +33,7 @@ echo "Set TB_LICENSE_SECRET in /etc/thingsboard/conf/thingsboard.conf"
 # Step 4. Configure ThingsBoard database
 # Install PostgreSQL
 # import the repository signing key:
+echo "Installing PostgreSQL..."
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 # add repository contents to your system:
 echo "deb http://apt.postgresql.org/pub/repos/apt/ ${release}"-pgdg main > /etc/apt/sources.list.d/pgdg.list
@@ -47,27 +50,33 @@ echo "Set SPRING_DATASOURCE_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
 # Step 5. Choose ThingsBoard queue service
 # Install RabbitMQ
-#apt-get -qq install --yes erlang rabbitmq-server
-#systemctl enable rabbitmq-server.service
-#systemctl start rabbitmq-server.service
-# Create admin user
-#rabbitmqctl add_user $USER password
-#rabbitmqctl set_user_tags $USER administrator
-#rabbitmqctl set_permissions -p / $USER ".*" ".*" ".*"
+apt-get -qq install --yes erlang rabbitmq-server
+# Delete guest user
+# rabbitmqctl delete_user guest
 # Create service user
-#rabbitmqctl add_user thingsboard password
+#rabbitmqctl add_user thingsboard <password>
 #rabbitmqctl set_permissions -p / thingsboard ".*" ".*" ".*"
-#echo "You must manually configure the database login"
-#echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
-
-# Show configuration differences
-diff ./thingsboard.conf /etc/thingsboard/conf/thingsboard.conf
+echo "You must manually configure the database login"
+echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 
 # Step 7. Run installation script
 #/usr/share/thingsboard/bin/install/install.sh
 
 # Step 8. Start ThingsBoard service
 #service thingsboard start
+
+# Install HAProxy
+# https://www.haproxy.com/blog/how-to-install-haproxy-on-ubuntu/
+# We'll use the PPA to get the latest LTS version
+echo "Installing HAProxy..."
+apt-get -qq install --yes --no-install-recommends software-properties-common
+add-apt-repository --yes ppa:vbernat/haproxy-2.4
+apt-get -qq install --yes haproxy=2.4.\*
+
+# Backup original config file
+cp --preserve=mode,ownership --verbose --no-clobber /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
+# Install our proxy configuration file
+cp -v ./haproxy.cfg /etc/haproxy/haproxy.cfg
 
 # Disable CORS for security reasons
 # SHEF 2201 9482
