@@ -62,9 +62,6 @@ echo "Set TB_QUEUE_RABBIT_MQ_PASSWORD in /etc/thingsboard/conf/thingsboard.conf"
 # Step 7. Run installation script
 #/usr/share/thingsboard/bin/install/install.sh
 
-# Step 8. Start ThingsBoard service
-#service thingsboard start
-
 # Install HAProxy
 # https://www.haproxy.com/blog/how-to-install-haproxy-on-ubuntu/
 # We'll use the PPA to get the latest LTS version
@@ -84,3 +81,6 @@ cp -v ./haproxy.cfg /etc/haproxy/haproxy.cfg
 cp --preserve=mode,ownership --verbose --no-clobber /etc/thingsboard/conf/thingsboard.yml /etc/thingsboard/conf/thingsboard.yml.bak
 # Disable CORS (escape the asterisk character)
 sed --in-place 's/allowed-origins: "\*"/allowed-origins: ""/g' /etc/thingsboard/conf/thingsboard.yml
+
+# Step 8. Start ThingsBoard service
+#service thingsboard start
