@@ -42,7 +42,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 # install and launch the postgresql service:
 apt-get -qq install --yes postgresql-12
-service postgresql start
+#service postgresql start
 #sudo -u postgres psql -c "\password"
 #createuser -h localhost --username postgres --pwprompt thingsboard
 #createdb -h localhost --username postgres --owner thingsboard thingsboard
