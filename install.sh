@@ -36,7 +36,7 @@ echo "Set TB_LICENSE_SECRET in /etc/thingsboard/conf/thingsboard.conf"
 echo "Installing PostgreSQL..."
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 # add repository contents to your system:
-echo "deb http://apt.postgresql.org/pub/repos/apt/ ${release}"-pgdg main > /etc/apt/sources.list.d/pgdg.list
+echo "deb [arch=amd64] http://apt.postgresql.org/pub/repos/apt/ ${release}-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 # install and launch the postgresql service:
 apt-get -qq install --yes postgresql-12
 service postgresql start
