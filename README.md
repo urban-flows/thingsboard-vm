@@ -3,9 +3,13 @@ An installation script and configuration for [ThingsBoard](https://thingsboard.i
 
 **See the notes on [ITS Wiki ufiot2](https://itswiki.shef.ac.uk/wiki/Ufiot2)**
 
+## Architecture
+
+See: [ThingsBoard Microservices architecture](https://thingsboard.io/docs/reference/msa/)
+
 # Installation
 
-This process and shell script installs the ThingsBoard service and a PostgreSQL database as per ThingsBoard PE [Ubuntu installation instructions](https://thingsboard.io/docs/user-guide/install/pe/ubuntu/).
+This process and shell script installs the ThingsBoard service, a RabbitMQ message broker, a PostgreSQL database, and a HAProxy reverse web proxy, as per ThingsBoard PE [Ubuntu installation instructions](https://thingsboard.io/docs/user-guide/install/pe/ubuntu/).
 
 1. Update operating system packages:
    1. `apt update`
