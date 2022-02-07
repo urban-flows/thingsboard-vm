@@ -25,6 +25,8 @@ apt install --yes openjdk-11-jdk
 echo "Installing ThingsBoard $thingsboard_version..."
 wget --quiet "https://dist.thingsboard.io/thingsboard-$thingsboard_version.deb" --output-document=/tmp/thingsboard.deb
 dpkg -i /tmp/thingsboard.deb
+# Make config file (which contains passwords) private
+chmod 640 /etc/thingsboard/conf/thingsboard.conf
 # Backup original configuration file
 cp --preserve=mode,ownership --verbose --no-clobber /etc/thingsboard/conf/thingsboard.conf /etc/thingsboard/conf/thingsboard.conf.bak
 
@@ -88,3 +90,18 @@ sed --in-place 's/allowed-origins:.*/allowed-origins: "https:\/\/ufiot2.shef.ac.
 
 # Step 8. Start ThingsBoard service
 #service thingsboard start
+
+# Create database backup directory
+backup_dir=/mnt/data/pg_dump
+mkdir --parents --verbose thingsboard $backup_dir
+chown --recursive thingsboard:thingsboard $backup_dir
+chmod --recursive 775 $backup_dir
+
+# Install database backup script
+mkdir --parents /home/thingsboard
+cp ./backup_database.sh /home/thingsboard/backup_database.sh
+touch /home/thingsboard/.pgpass
+chown thingsboard:thingsboard /home/thingsboard/.pgpass
+chmod 600 /home/thingsboard/.pgpass
+echo "You must manually input the database password into .pgpass"
+crontab -u thingsboard ./crontab.txt
