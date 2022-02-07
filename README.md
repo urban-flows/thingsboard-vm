@@ -17,7 +17,7 @@ This process and shell script installs the ThingsBoard service, a RabbitMQ messa
 
 2. Clone this repository
 3. Go into that directory: `cd ./thingsboard-vm`
-4. Run the script as an administrator: `sudo sh install.sh`
+4. Run the script as an administrator: `sudo sh install.sh` (this script should be idempotent and safe to run for initial installation, changes, and upgrades.)
 5. Create service users for each subsystem
    1. PostgreSQL superuser `sudo -u postgres psql -c "\password"`
    2. PostgreSQL service user `createuser -h localhost --username postgres --pwprompt thingsboard`

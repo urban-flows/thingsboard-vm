@@ -3,6 +3,9 @@
 # ThingsBoard PE installation script
 # https://thingsboard.io/docs/user-guide/install/pe/ubuntu
 
+# This script should be idempotent and safe to run for initial installation,
+# changes, and upgrades
+
 thingsboard_version="3.3.1pe"
 release=$(lsb_release -cs)
 
