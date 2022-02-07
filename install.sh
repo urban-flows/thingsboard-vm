@@ -82,8 +82,9 @@ cp -v ./haproxy.cfg /etc/haproxy/haproxy.cfg
 # SHEF 2201 9482
 # Make sure the original config file is backed up
 cp --preserve=mode,ownership --verbose --no-clobber /etc/thingsboard/conf/thingsboard.yml /etc/thingsboard/conf/thingsboard.yml.bak
-# Disable CORS (escape the asterisk character)
-sed --in-place 's/allowed-origins: "\*"/allowed-origins: ""/g' /etc/thingsboard/conf/thingsboard.yml
+# Restrict CORS to this domain (escape the asterisk character)
+# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+sed --in-place 's/allowed-origins:.*/allowed-origins: "https://ufiot2.shef.ac.uk"/g' /etc/thingsboard/conf/thingsboard.yml
 
 # Step 8. Start ThingsBoard service
 #service thingsboard start
