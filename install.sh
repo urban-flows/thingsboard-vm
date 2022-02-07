@@ -103,5 +103,5 @@ cp ./backup_database.sh /home/thingsboard/backup_database.sh
 touch /home/thingsboard/.pgpass
 chown thingsboard:thingsboard /home/thingsboard/.pgpass
 chmod 600 /home/thingsboard/.pgpass
-echo "You must manually input the database password into .pgpass"
+echo "You must manually input the database password into /home/thingsboard/.pgpass"
 crontab -u thingsboard ./crontab.txt
