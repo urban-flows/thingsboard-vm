@@ -104,6 +104,5 @@ cp --verbose --no-clobber ./.pgpass /home/thingsboard/.pgpass
 chown thingsboard:thingsboard /home/thingsboard/.pgpass
 chmod 600 /home/thingsboard/.pgpass
 echo "You must manually populate /home/thingsboard/.pgpass"
-echo "hostname:port:database:username:password"
 echo "See: https://www.postgresql.org/docs/12/libpq-pgpass.html"
 crontab -u thingsboard ./crontab.txt
