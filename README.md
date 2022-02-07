@@ -24,7 +24,7 @@ This process and shell script installs the ThingsBoard service, a RabbitMQ messa
 6. Set up RabbitMQ logins
    1. Delete guest user: `rabbitmqctl delete_user guest`
    2. Create service user
-      1. `rabbitmqctl add_user thingsboard password`
+      1. `rabbitmqctl add_user thingsboard <password>`
       2. `rabbitmqctl set_permissions -p / thingsboard ".*" ".*" ".*"`
 
 7. Check for any configuration changes: `diff ./thingsboard.conf /etc/thingsboard/conf/thingsboard.conf`
@@ -63,3 +63,6 @@ View logs:
 sudo journalctl -u thingsboard.service --since "24 hours ago"
 ```
 
+# Administration
+
+Check the documentation for each of the subsystems.
