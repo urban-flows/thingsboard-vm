@@ -100,8 +100,10 @@ chmod --recursive 775 $backup_dir
 # Install database backup script
 mkdir --parents /home/thingsboard
 cp ./backup_database.sh /home/thingsboard/backup_database.sh
-touch /home/thingsboard/.pgpass
+cp --verbose --no-clobber ./.pgpass /home/thingsboard/.pgpass
 chown thingsboard:thingsboard /home/thingsboard/.pgpass
 chmod 600 /home/thingsboard/.pgpass
-echo "You must manually input the database password into /home/thingsboard/.pgpass"
+echo "You must manually populate /home/thingsboard/.pgpass"
+echo "hostname:port:database:username:password"
+echo "See: https://www.postgresql.org/docs/12/libpq-pgpass.html"
 crontab -u thingsboard ./crontab.txt

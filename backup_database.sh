@@ -19,5 +19,6 @@ dbname=thingsboard
 # Exit immediately if a command exits with a non-zero status.
 set -e
 
-# The password will be loaded from ~/.pgpass
-pg_dump --host=$host --username=$user --no-password --file=$file $dbname
+# The connection options are loaded from ~/.pgpass
+# https://www.postgresql.org/docs/12/libpq-pgpass.html
+pg_dump --no-password --file=$file
